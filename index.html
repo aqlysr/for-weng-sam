@@ -71,6 +71,7 @@
                 align-items: center;
                 min-height: 100vh;
                 overflow: hidden;
+                padding: 20px;
             }
 
             .scene {
@@ -87,6 +88,15 @@
 
             .scene.active {
                 display: flex;
+                max-height: 90vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .scene::-webkit-scrollbar {
+                display: none;
             }
 
             @keyframes fadeIn {
@@ -194,7 +204,9 @@
             }
 
             .bouquet-img {
-                width: 200px;
+                max-width: 100%;
+                height: auto;
+                width: 180px;
                 border: 3px solid #f48fb1;
                 box-shadow: 4px 4px 0px #f06292;
                 image-rendering: pixelated;
