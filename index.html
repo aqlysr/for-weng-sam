@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>A Question for Weng Sam</title>
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+            @font-face {
+                font-family: "PixelMplus";
+                src: url("fonts/PixelMplus12-Regular.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "PixelMplus";
+                src: url("fonts/PixelMplus12-Bold.ttf") format("truetype");
+                font-weight: bold;
+                font-style: normal;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: #fff0f5;
+                background-image:
+                    radial-gradient(#ffc2d4 1.5px, transparent 1.5px),
+                    radial-gradient(#ffc2d4 1.5px, transparent 1.5px);
+                background-size: 32px 32px;
+                background-position:
+                    0 0,
+                    16px 16px;
+                color: #c2185b;
+                font-family: "PixelMPlus", "Press Start 2P", cursive;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                overflow: hidden;
+            }
+
+            .scene {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                max-width: 720px;
+                width: 90%;
+                gap: 28px;
+                animation: fadeIn 0.5s ease;
+            }
+
+            .scene.active {
+                display: flex;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                color: #e91e8c;
+                line-height: 2;
+                letter-spacing: 1px;
+            }
+
+            p {
+                font-size: 0.85rem;
+                line-height: 2.4;
+                color: #ad1457;
+                letter-spacing: 0.5px;
+            }
+
+            .pixel-border {
+                border: 4px solid #f48fb1;
+                image-rendering: pixelated;
+                box-shadow: 4px 4px 0px #f06292;
+                padding: 36px;
+                background-color: #fff8fa;
+                width: 100%;
+            }
+
+            .btn {
+                font-family: "PixelMPlus", "Press Start 2P", cursive;
+                font-size: 0.8rem;
+                padding: 14px 28px;
+                border: 3px solid #f06292;
+                background-color: #fff8fa;
+                color: #e91e8c;
+                cursor: pointer;
+                box-shadow: 4px 4px 0px #f48fb1;
+                transition: all 0.1s;
+                letter-spacing: 0.5px;
+            }
+
+            .btn:hover {
+                background-color: #fce4ec;
+                color: #c2185b;
+                transform: translate(-2px, -2px);
+                box-shadow: 6px 6px 0px #f48fb1;
+            }
+
+            .btn:active {
+                transform: translate(2px, 2px);
+                box-shadow: 2px 2px 0px #f48fb1;
+            }
+
+            .btn-row {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .btn-yes {
+                background-color: #f06292;
+                color: #fff;
+            }
+
+            .btn-yes:hover {
+                background-color: #e91e8c;
+                color: #fff;
+            }
+
+            .loading-bar-container {
+                width: 100%;
+                border: 3px solid #f48fb1;
+                height: 24px;
+                background: #fce4ec;
+                box-shadow: 4px 4px 0px #f06292;
+            }
+
+            .loading-bar {
+                height: 100%;
+                width: 0%;
+                background-color: #f06292;
+                transition: width 0.4s linear;
+            }
+
+            .loading-text {
+                font-size: 0.75rem;
+                color: #ad1457;
+                min-height: 3rem;
+                line-height: 2.8;
+                letter-spacing: 1px;
+            }
+
+            .gif-decoration {
+                width: 80px;
+                image-rendering: pixelated;
+            }
+
+            .bouquet-img {
+                width: 200px;
+                border: 3px solid #f48fb1;
+                box-shadow: 4px 4px 0px #f06292;
+                image-rendering: pixelated;
+            }
+
+            .reason-list {
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .reason-item {
+                font-size: 0.8rem;
+                line-height: 2.4;
+                color: #ad1457;
+                letter-spacing: 0.5px;
+            }
+
+            .japanese {
+                color: #e91e8c;
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+            }
+
+            .next-btn-wrapper {
+                margin-top: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Scene 1: The Hook -->
+        <div class="scene active" id="scene-1">
+            <div class="pixel-border">
+                <img
+                    src="assets/kucing.gif"
+                    alt=""
+                    class="gif-decoration"
+                    style="margin-bottom: 16px"
+                />
+                <h1>I built a whole website just to ask you one question.</h1>
+                <br />
+                <p>Yes, I know.</p>
+                <br />
+                <p>Just... keep clicking.</p>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-2')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 2: The Story Part 1 -->
+        <div class="scene" id="scene-2">
+            <div class="pixel-border">
+                <h1>So here's what happened.</h1>
+                <br />
+                <p>
+                    We met in Japanese class. I didn't really notice you at
+                    first, if I'm being honest.
+                </p>
+                <br />
+                <p>
+                    Then one day, before class, you told me I was reading too
+                    fast. Was I reading too fast? I genuinely didn't know. But I
+                    slowed down.
+                </p>
+                <br />
+                <p>
+                    After class, on the way to our labs, I asked if I did
+                    better. That was probably the first real conversation we
+                    had.
+                </p>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-3')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 3: The Story Part 2 -->
+        <div class="scene" id="scene-3">
+            <div class="pixel-border">
+                <p>
+                    Since then, lunch with others where I embarrassingly
+                    couldn't open my bank app and had to ask you to cover me.
+                    You did, without making it weird. I transferred you back,
+                    obviously.
+                </p>
+                <br />
+                <p>
+                    I also asked if you wanted to play tennis. You were busy. I
+                    said no pressure.
+                </p>
+                <br />
+                <p>And here we are.</p>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-4')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 4: The Reasons -->
+        <div class="scene" id="scene-4">
+            <div class="pixel-border">
+                <h1>A few reasons why I think this is a good idea:</h1>
+                <br />
+                <div class="reason-list">
+                    <div class="reason-item">
+                        1. We're both from Pahang. Easy balik kampung for Raya.
+                        You're invited, by the way.
+                        <span class="japanese">冗談だよ。</span>
+                    </div>
+                    <div class="reason-item">
+                        2. We both speak Japanese.
+                        <span class="japanese">最高でしょ？</span>
+                    </div>
+                    <div class="reason-item">
+                        3. I can make paper flower bouquets for you. Here's one
+                        I made.
+                        <br /><br />
+                        <div style="display: flex; justify-content: center">
+                            <img
+                                src="assets/flower.jpg"
+                                alt="Paper flower bouquet"
+                                class="bouquet-img"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-5')">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 5: The Acknowledgement -->
+        <div class="scene" id="scene-5">
+            <div class="pixel-border">
+                <img
+                    src="assets/stars.gif"
+                    alt=""
+                    class="gif-decoration"
+                    style="margin-bottom: 16px"
+                />
+                <p>Look, I know we're not that close yet.</p>
+                <br />
+                <p>But I think that's kind of the point.</p>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="startLoading()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 6: Fake Loading Screen -->
+        <div class="scene" id="scene-6">
+            <div class="pixel-border">
+                <div class="loading-text" id="loading-text">
+                    Gathering courage........
+                </div>
+                <br />
+                <div class="loading-bar-container">
+                    <div class="loading-bar" id="loading-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 7: The Ask -->
+        <div class="scene" id="scene-7">
+            <div class="pixel-border">
+                <h1>Weng Sam,</h1>
+                <br />
+                <p>Do you want to go on a date with me?</p>
+                <br />
+                <div class="btn-row">
+                    <button class="btn btn-yes" onclick="handleYes()">
+                        Yes 🎉
+                    </button>
+                    <button class="btn" onclick="handleMaybeLater()">
+                        Maybe Later 🥲
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 8a: Date Options -->
+        <div class="scene" id="scene-8a">
+            <div class="pixel-border">
+                <p>Really?! Ok ok ok. Cool. Totally cool. I'm cool.</p>
+                <br />
+                <p>So... what kind of date are we talking?</p>
+                <br />
+                <div class="btn-row">
+                    <button class="btn" onclick="handleDateChoice('coffee')">
+                        ☕ Coffee
+                    </button>
+                    <button class="btn" onclick="handleDateChoice('beach')">
+                        🏖️ Beach
+                    </button>
+                    <button class="btn" onclick="handleDateChoice('dinner')">
+                        🍽️ Dinner
+                    </button>
+                    <button class="btn" onclick="handleDateChoice('fun')">
+                        🎯 Something Fun
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scene 8b: Maybe Later -->
+        <div class="scene" id="scene-8b">
+            <div class="pixel-border">
+                <img
+                    src="assets/sad.gif"
+                    alt=""
+                    class="gif-decoration"
+                    style="margin-bottom: 16px"
+                />
+                <p>That's fair.</p>
+                <br />
+                <p>I'll leave this tab open. No pressure.</p>
+                <br />
+                <p>...The website will be here. 🙂</p>
+            </div>
+        </div>
+
+        <!-- Scene 9a: Date Confirmed -->
+        <div class="scene" id="scene-9a">
+            <div class="pixel-border">
+                <img
+                    src="assets/dancing_cat.gif"
+                    alt=""
+                    class="gif-decoration"
+                    style="margin-bottom: 16px"
+                />
+                <p id="date-confirmed-text"></p>
+                <br />
+                <p>I'll make it worth your while.</p>
+                <br />
+                <p>よろしくお願いします 🌸</p>
+            </div>
+        </div>
+
+        <script>
+            emailjs.init("O19zIcTTcZ7g517z9");
+
+            const dateMessages = {
+                coffee: "Coffee it is. I promise I won't talk too much. Maybe.",
+                beach: "Beach it is. Sunscreen, good music, and good company. Sounds like a plan.",
+                dinner: "Dinner it is. And this time, I'll make sure my bank app works.",
+                fun: "Something fun it is. I'll plan something good, I promise.",
+            };
+
+            function goTo(sceneId) {
+                document.querySelectorAll(".scene").forEach((s) => {
+                    s.classList.remove("active");
+                });
+                document.getElementById(sceneId).classList.add("active");
+            }
+
+            function startLoading() {
+                goTo("scene-6");
+                const steps = [
+                    { text: "Gathering courage........", width: "33%" },
+                    {
+                        text: "Overcoming the fear of rejection.......",
+                        width: "66%",
+                    },
+                    { text: "Almost there........", width: "90%" },
+                    { text: "OK. We're good. ✓", width: "100%" },
+                ];
+
+                let i = 0;
+                const bar = document.getElementById("loading-bar");
+                const textEl = document.getElementById("loading-text");
+
+                function nextStep() {
+                    if (i < steps.length) {
+                        textEl.textContent = steps[i].text;
+                        bar.style.width = steps[i].width;
+                        i++;
+                        if (i < steps.length) {
+                            setTimeout(nextStep, 1200);
+                        } else {
+                            setTimeout(() => goTo("scene-7"), 1000);
+                        }
+                    }
+                }
+
+                nextStep();
+            }
+
+            function handleYes() {
+                sendEmail("Yes", "—");
+                goTo("scene-8a");
+            }
+
+            function handleMaybeLater() {
+                sendEmail("Maybe Later", "—");
+                goTo("scene-8b");
+            }
+
+            function handleDateChoice(choice) {
+                const message = dateMessages[choice];
+                document.getElementById("date-confirmed-text").textContent =
+                    message;
+                sendEmail("Yes", choice);
+                goTo("scene-9a");
+            }
+
+            function sendEmail(answer, dateChoice) {
+                emailjs.send("service_rkbevco", "template_zqdvzwl", {
+                    answer: answer,
+                    date_choice: dateChoice,
+                });
+            }
+        </script>
+    </body>
+</html>
