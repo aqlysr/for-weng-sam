@@ -3,8 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="title" content="A Question for Weng Sam" />
+        <meta
+            name="description"
+            content="I built a whole website just to ask you one question..."
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hiwengsam.date/" />
+        <meta property="og:title" content="A Question for Weng Sam" />
+        <meta
+            property="og:description"
+            content="I built a whole website just to ask you one question..."
+        />
+        <meta
+            property="og:image"
+            content="https://hiwengsam.date/assets/flower.jpg"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://hiwengsam.date/" />
+        <meta property="twitter:title" content="A Question for Weng Sam" />
+        <meta
+            property="twitter:description"
+            content="I built a whole website just to ask you one question..."
+        />
+        <meta
+            property="twitter:image"
+            content="https://hiwengsam.date/assets/flower.jpg"
+        />
         <title>A Question for Weng Sam</title>
-        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
             @font-face {
@@ -457,7 +486,6 @@
             }
 
             function handleYes() {
-                sendEmail("Yes", "—");
                 goTo("scene-8a");
             }
 
