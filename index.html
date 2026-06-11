@@ -330,7 +330,26 @@
                 </p>
             </div>
             <div class="next-btn-wrapper">
-                <button class="btn" onclick="goTo('scene-5')">Next →</button>
+                <button class="btn" onclick="startMeme()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 4b: Meme -->
+        <div class="scene" id="scene-4b">
+            <div class="pixel-border">
+                <img
+                    src="assets/meme.jpg"
+                    alt="meme"
+                    style="
+                        max-width: 50%;
+                        border: 3px solid #f48fb1;
+                        box-shadow: 4px 4px 0px #f06292;
+                    "
+                />
+                <br /><br />
+                <div class="loading-bar-container">
+                    <div class="loading-bar" id="meme-bar"></div>
+                </div>
             </div>
         </div>
 
@@ -550,6 +569,18 @@
                     .catch((err) =>
                         console.error("Failed to send email:", err),
                     );
+            }
+            function startMeme() {
+                goTo("scene-4b");
+                const bar = document.getElementById("meme-bar");
+                bar.style.transition = "width 3.5s linear";
+                // Small delay so the transition fires after render
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bar.style.width = "100%";
+                    });
+                });
+                setTimeout(() => goTo("scene-5"), 3500);
             }
         </script>
     </body>
