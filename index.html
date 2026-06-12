@@ -237,6 +237,9 @@
 
             .next-btn-wrapper {
                 margin-top: 12px;
+                display: flex;
+                gap: 12px;
+                justify-content: center;
             }
         </style>
     </head>
@@ -280,6 +283,7 @@
                 </p>
             </div>
             <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-1')">← Back</button>
                 <button class="btn" onclick="goTo('scene-3')">Next →</button>
             </div>
         </div>
@@ -304,6 +308,7 @@
                 <p>Nothing big, really.</p>
             </div>
             <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-2')">← Back</button>
                 <button class="btn" onclick="goTo('scene-4')">Next →</button>
             </div>
         </div>
@@ -330,6 +335,7 @@
                 </p>
             </div>
             <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-3')">← Back</button>
                 <button class="btn" onclick="startMeme()">Next →</button>
             </div>
         </div>
@@ -383,6 +389,7 @@
                 </div>
             </div>
             <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-4')">← Back</button>
                 <button class="btn" onclick="goTo('scene-6')">Next →</button>
             </div>
         </div>
@@ -401,6 +408,7 @@
                 <p>But I'd like to change that.</p>
             </div>
             <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-5')">← Back</button>
                 <button class="btn" onclick="startLoading()">Next →</button>
             </div>
         </div>
@@ -434,6 +442,9 @@
                     </button>
                 </div>
             </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-6')">← Back</button>
+            </div>
         </div>
 
         <!-- Scene 8a: Date Options -->
@@ -457,6 +468,9 @@
                         🎯 Something Fun
                     </button>
                 </div>
+            </div>
+            <div class="next-btn-wrapper">
+                <button class="btn" onclick="goTo('scene-8')">← Back</button>
             </div>
         </div>
 
@@ -570,17 +584,24 @@
                         console.error("Failed to send email:", err),
                     );
             }
+            let memeTimeout;
             function startMeme() {
+                clearTimeout(memeTimeout);
                 goTo("scene-4b");
                 const bar = document.getElementById("meme-bar");
+                // Reset instantly (no transition)
+                bar.style.transition = "none";
+                bar.style.width = "0%";
+                // Force reflow so the reset takes effect
+                void bar.offsetWidth;
+                // Then animate to 100%
                 bar.style.transition = "width 3.5s linear";
-                // Small delay so the transition fires after render
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         bar.style.width = "100%";
                     });
                 });
-                setTimeout(() => goTo("scene-5"), 3500);
+                memeTimeout = setTimeout(() => goTo("scene-5"), 3500);
             }
         </script>
     </body>
